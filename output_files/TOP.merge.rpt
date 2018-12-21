@@ -1,0 +1,969 @@
+Partition Merge report for TOP
+Sun Jan 15 17:39:22 2017
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Partition Merge Summary
+  3. Partition Merge Netlist Types Used
+  4. Connections to In-System Debugging Instance "auto_signaltap_0"
+  5. Partition Merge Partition Statistics
+  6. Partition Merge Partition Pin Processing
+  7. Partition Merge Resource Usage Summary
+  8. Partition Merge RAM Summary
+  9. Partition Merge Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------+
+; Partition Merge Summary                                                               ;
++------------------------------------+--------------------------------------------------+
+; Partition Merge Status             ; Successful - Sun Jan 15 17:39:22 2017            ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Revision Name                      ; TOP                                              ;
+; Top-level Entity Name              ; TOP                                              ;
+; Family                             ; Cyclone III                                      ;
+; Total logic elements               ; 2,777                                            ;
+;     Total combinational functions  ; 1,659                                            ;
+;     Dedicated logic registers      ; 1,970                                            ;
+; Total registers                    ; 1970                                             ;
+; Total pins                         ; 106                                              ;
+; Total virtual pins                 ; 0                                                ;
+; Total memory bits                  ; 290,862                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                                ;
+; Total PLLs                         ; 1                                                ;
++------------------------------------+--------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Netlist Types Used                                                                                            ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+; Partition Name                 ; Partition Type ; Netlist Type Used ; Netlist Type Requested ; Partition Contents             ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+; Top                            ; User-created   ; Source File       ; Post-Fit               ;                                ;
+; sld_hub:auto_hub               ; Auto-generated ; Post-Synthesis    ; Post-Synthesis         ; sld_hub:auto_hub               ;
+; sld_signaltap:auto_signaltap_0 ; Auto-generated ; Post-Synthesis    ; Post-Synthesis         ; sld_signaltap:auto_signaltap_0 ;
+; hard_block:auto_generated_inst ; Auto-generated ; Source File       ; Source File            ; hard_block:auto_generated_inst ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Connections to In-System Debugging Instance "auto_signaltap_0"                                                                                                                                                                                                                         ;
++------------------------------------------------------------------------------------------------------+---------------+-----------+----------------+-------------------+------------------------------------------------------------------------------------------------------+---------+
+; Name                                                                                                 ; Type          ; Status    ; Partition Name ; Netlist Type Used ; Actual Connection                                                                                    ; Details ;
++------------------------------------------------------------------------------------------------------+---------------+-----------+----------------+-------------------+------------------------------------------------------------------------------------------------------+---------+
+; AD_CLK                                                                                               ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD_clk_gen:AD_clk_gen|AD_clk~0                     ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|AD_sample_en                   ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD_clk_gen:AD_clk_gen|AD_sample_en                 ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|AD_sample_en                   ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD_clk_gen:AD_clk_gen|AD_sample_en                 ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_read_over                  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|ARM_read_over                                      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_read_over                  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|ARM_read_over                                      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|FIFO_WEN                       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|FIFO_WEN~0_wirecell            ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|FIFO_WEN                       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|FIFO_WEN~0_wirecell            ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[0]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[0]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[0]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[0]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[1]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[1]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[1]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[1]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[2]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[2]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|burst_period[2]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_period[2]                                    ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[0]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[0]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[0]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[0]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[10] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[10] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[10] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[10] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[11] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[11] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[11] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[11] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[12] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[12] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[12] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[12] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[13] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[13] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[13] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[13] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[14] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[14] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[14] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[14] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[15] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[15] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[15] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[15] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[16] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[16] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[16] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[16] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[17] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[17] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[17] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[17] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[18] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[18] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[18] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[18] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[19] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[19] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[19] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[19] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[1]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[1]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[1]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[1]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[20] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[20] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[20] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[20] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[21] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[21] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[21] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[21] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[22] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[22] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[22] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[22] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[23] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[23] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[23] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[23] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[24] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[24] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[24] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[24] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[25] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[25] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[25] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[25] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[26] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[26] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[26] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[26] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[27] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[27] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[27] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[27] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[28] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[28] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[28] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[28] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[29] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[29] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[29] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[29] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[2]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[2]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[2]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[2]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[30] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[30] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[30] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[30] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[31] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[31] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[31] ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[31] ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[3]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[3]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[3]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[3]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[4]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[4]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[4]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[4]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[5]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[5]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[5]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[5]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[6]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[6]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[6]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[6]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[7]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[7]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[7]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[7]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[8]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[8]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[8]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[8]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[9]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[9]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[9]  ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_couunter[9]  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[0]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[0]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[10]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[10]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[10]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[10]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[11]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[11]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[11]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[11]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[12]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[12]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[12]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[12]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[14]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[14]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[14]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[14]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[15]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[15]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[15]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[15]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[16]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[16]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[16]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[16]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[17]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[17]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[17]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[17]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[18]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[18]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[18]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[18]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[19]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[19]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[19]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[19]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[1]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[1]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[20]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[20]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[20]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[20]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[23]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[23]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[23]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[23]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[24]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[24]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[21]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[25]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[25]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[26]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[26]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[22]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[27]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[27]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[28]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[28]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[29]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[29]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[2]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[2]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[30]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[30]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[31]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[31]      ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[3]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[3]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; GND                                                                                                  ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[4]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[4]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[4]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[4]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[5]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[5]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[5]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[5]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[6]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[6]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[6]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[6]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[7]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[7]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[7]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[7]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[8]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[8]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[13]      ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[9]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[9]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[9]       ; pre-synthesis ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|burst_syn_ctrl:burst_syn_ctrl|clk_div_num[9]       ; N/A     ;
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; post-fitting  ; connected ; Top            ; post-synthesis    ; Electromagnetic_Acoustic:Electromagnetic_Acoustic|FIFO_ctrl:FIFO_ctrl|ARM_data_ready                 ; N/A     ;
++------------------------------------------------------------------------------------------------------+---------------+-----------+----------------+-------------------+------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Partition Statistics                                                                                                    ;
++---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
+; Statistic                                   ; Top  ; sld_hub:auto_hub ; sld_signaltap:auto_signaltap_0 ; hard_block:auto_generated_inst ;
++---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
+; Estimated Total logic elements              ; 1322 ; 141              ; 1316                           ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Total combinational functions               ; 1203 ; 117              ; 339                            ; 0                              ;
+; Logic element usage by number of LUT inputs ;      ;                  ;                                ;                                ;
+;     -- 4 input functions                    ; 432  ; 51               ; 106                            ; 0                              ;
+;     -- 3 input functions                    ; 212  ; 30               ; 138                            ; 0                              ;
+;     -- <=2 input functions                  ; 559  ; 36               ; 95                             ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Logic elements by mode                      ;      ;                  ;                                ;                                ;
+;     -- normal mode                          ; 746  ; 109              ; 281                            ; 0                              ;
+;     -- arithmetic mode                      ; 457  ; 8                ; 58                             ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Total registers                             ; 666  ; 86               ; 1218                           ; 0                              ;
+;     -- Dedicated logic registers            ; 666  ; 86               ; 1218                           ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Virtual pins                                ; 0    ; 0                ; 0                              ; 0                              ;
+; I/O pins                                    ; 106  ; 0                ; 0                              ; 0                              ;
+; Embedded Multiplier 9-bit elements          ; 0    ; 0                ; 0                              ; 0                              ;
+; Total memory bits                           ; 46   ; 0                ; 290816                         ; 0                              ;
+; Total RAM block bits                        ; 0    ; 0                ; 0                              ; 0                              ;
+; JTAG                                        ; 1    ; 0                ; 0                              ; 0                              ;
+; PLL                                         ; 0    ; 0                ; 0                              ; 1                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Connections                                 ;      ;                  ;                                ;                                ;
+;     -- Input Connections                    ; 581  ; 127              ; 1689                           ; 1                              ;
+;     -- Registered Input Connections         ; 560  ; 97               ; 1247                           ; 0                              ;
+;     -- Output Connections                   ; 1644 ; 191              ; 1                              ; 562                            ;
+;     -- Registered Output Connections        ; 121  ; 190              ; 0                              ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Internal Connections                        ;      ;                  ;                                ;                                ;
+;     -- Total Connections                    ; 7536 ; 832              ; 6881                           ; 564                            ;
+;     -- Registered Connections               ; 2616 ; 617              ; 5106                           ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; External Connections                        ;      ;                  ;                                ;                                ;
+;     -- Top                                  ; 36   ; 119              ; 1507                           ; 563                            ;
+;     -- sld_hub:auto_hub                     ; 119  ; 16               ; 183                            ; 0                              ;
+;     -- sld_signaltap:auto_signaltap_0       ; 1507 ; 183              ; 0                              ; 0                              ;
+;     -- hard_block:auto_generated_inst       ; 563  ; 0                ; 0                              ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Partition Interface                         ;      ;                  ;                                ;                                ;
+;     -- Input Ports                          ; 51   ; 19               ; 199                            ; 1                              ;
+;     -- Output Ports                         ; 112  ; 37               ; 152                            ; 2                              ;
+;     -- Bidir Ports                          ; 18   ; 0                ; 0                              ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Registered Ports                            ;      ;                  ;                                ;                                ;
+;     -- Registered Input Ports               ; 0    ; 4                ; 77                             ; 0                              ;
+;     -- Registered Output Ports              ; 0    ; 26               ; 143                            ; 0                              ;
+;                                             ;      ;                  ;                                ;                                ;
+; Port Connectivity                           ;      ;                  ;                                ;                                ;
+;     -- Input Ports driven by GND            ; 0    ; 1                ; 20                             ; 0                              ;
+;     -- Output Ports driven by GND           ; 0    ; 1                ; 0                              ; 0                              ;
+;     -- Input Ports driven by VCC            ; 0    ; 0                ; 0                              ; 0                              ;
+;     -- Output Ports driven by VCC           ; 0    ; 0                ; 0                              ; 0                              ;
+;     -- Input Ports with no Source           ; 0    ; 1                ; 34                             ; 0                              ;
+;     -- Output Ports with no Source          ; 0    ; 0                ; 0                              ; 0                              ;
+;     -- Input Ports with no Fanout           ; 0    ; 2                ; 39                             ; 0                              ;
+;     -- Output Ports with no Fanout          ; 0    ; 15               ; 143                            ; 0                              ;
++---------------------------------------------+------+------------------+--------------------------------+--------------------------------+
+Note: Resource usage numbers presented for Partitions containing post-synthesis logic are estimates.  For Partitions containing post-fit logic, resource usage numbers are accurate based on previous placement information.  Actual Fitter results may vary depending on current Fitter Preservation Level assignments.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Partition Pin Processing                                                                                                                    ;
++-------------------------------------------------------------------------+-----------+---------------+----------+--------------------------------------------+
+; Name                                                                    ; Partition ; Type          ; Location ; Status                                     ;
++-------------------------------------------------------------------------+-----------+---------------+----------+--------------------------------------------+
+; AD_CLK                                                                  ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- AD_CLK                                                           ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- AD_CLK~output                                                    ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; AD_DCO                                                                  ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- AD_DCO                                                           ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- AD_DCO~input                                                     ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; AD_DFS                                                                  ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- AD_DFS                                                           ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- AD_DFS~output                                                    ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; AD_OE_N                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- AD_OE_N                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- AD_OE_N~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; AD_OR                                                                   ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- AD_OR                                                            ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- AD_OR~input                                                      ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; AD_PDWN                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- AD_PDWN                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- AD_PDWN~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[0]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[0]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[0]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[1]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[1]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[1]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[2]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[2]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[2]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[3]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[3]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[3]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[4]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[4]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[4]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[5]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[5]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[5]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[6]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[6]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[6]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_ADDR[7]                                                             ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_ADDR[7]                                                      ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_ADDR[7]~input                                                ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_CE                                                                  ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_CE                                                           ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_CE~input                                                     ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[0]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[0]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[0]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[10]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[10]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[10]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[11]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[11]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[11]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[12]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[12]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[12]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[13]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[13]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[13]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[14]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[14]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[14]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[15]                                                            ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[15]                                                     ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[15]~output                                              ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[1]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[1]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[1]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[2]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[2]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[2]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[3]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[3]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[3]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[4]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[4]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[4]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[5]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[5]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[5]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[6]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[6]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[6]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[7]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[7]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[7]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[8]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[8]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[8]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_DATA[9]                                                             ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- ARM_DATA[9]                                                      ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_DATA[9]~output                                               ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_OEn                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_OEn                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_OEn~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_WEn                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_WEn                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_WEn~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ARM_gain_ctrl                                                           ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ARM_gain_ctrl                                                    ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ARM_gain_ctrl~input                                              ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CH0_H                                                                   ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CH0_H                                                            ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CH0_H~output                                                     ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CH0_L                                                                   ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CH0_L                                                            ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CH0_L~output                                                     ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CH1_H                                                                   ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CH1_H                                                            ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CH1_H~output                                                     ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CH1_L                                                                   ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CH1_L                                                            ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CH1_L~output                                                     ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CHARGH_H                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CHARGH_H                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CHARGH_H~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CHARGH_L                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- CHARGH_L                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- CHARGH_L~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CODER_A                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- CODER_A                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- CODER_A~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; CODER_B                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- CODER_B                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- CODER_B~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DA_DIN                                                                  ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- DA_DIN                                                           ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- DA_DIN~output                                                    ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DA_LDAC                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- DA_LDAC                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- DA_LDAC~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DA_SCLK                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- DA_SCLK                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- DA_SCLK~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DA_SYNC                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- DA_SYNC                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- DA_SYNC~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DONE_H                                                                  ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- DONE_H                                                           ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- DONE_H~input                                                     ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; DONE_L                                                                  ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- DONE_L                                                           ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- DONE_L~input                                                     ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; Discharge                                                               ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- Discharge                                                        ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- Discharge~output                                                 ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ENCODER_A                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ENCODER_A                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ENCODER_A~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ENCODER_B                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ENCODER_B                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ENCODER_B~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; ENCODER_SW_OUT                                                          ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- ENCODER_SW_OUT                                                   ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- ENCODER_SW_OUT~input                                             ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FAULT_H                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FAULT_H                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FAULT_H~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FAULT_L                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FAULT_L                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FAULT_L~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[0]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[0]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[0]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[10]                                                              ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[10]                                                       ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[10]~input                                                 ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[11]                                                              ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[11]                                                       ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[11]~input                                                 ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[12]                                                              ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[12]                                                       ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[12]~input                                                 ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[13]                                                              ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[13]                                                       ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[13]~input                                                 ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[1]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[1]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[1]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[2]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[2]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[2]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[3]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[3]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[3]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[4]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[4]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[4]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[5]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[5]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[5]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[6]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[6]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[6]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[7]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[7]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[7]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[8]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[8]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[8]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_D[9]                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_D[9]                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_D[9]~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_EF                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_EF                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_EF~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_FF                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_FF                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_FF~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_HF                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_HF                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_HF~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_PAE                                                                ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_PAE                                                         ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_PAE~input                                                   ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_PAF                                                                ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FIFO_PAF                                                         ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FIFO_PAF~input                                                   ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_RCLK                                                               ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FIFO_RCLK                                                        ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FIFO_RCLK~output                                                 ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_REN                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FIFO_REN                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FIFO_REN~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_WCLK                                                               ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FIFO_WCLK                                                        ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FIFO_WCLK~output                                                 ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FIFO_WEN                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FIFO_WEN                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FIFO_WEN~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_BUZZER                                                             ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_BUZZER                                                      ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_BUZZER~output                                               ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_CLK_SYS                                                            ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- FPGA_CLK_SYS                                                     ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- FPGA_CLK_SYS~input                                               ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[1]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[1]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[1]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[2]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[2]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[2]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[3]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[3]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[3]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[4]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[4]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[4]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[5]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[5]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[5]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[6]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[6]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[6]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; FPGA_GPIO[7]                                                            ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- FPGA_GPIO[7]                                                     ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- FPGA_GPIO[7]~output                                              ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; HV_SCL                                                                  ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- HV_SCL                                                           ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- HV_SCL~output                                                    ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; HV_SDA                                                                  ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- HV_SDA                                                           ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- HV_SDA~output                                                    ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; IOV_HIGH_C_P                                                            ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- IOV_HIGH_C_P                                                     ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- IOV_HIGH_C_P~input                                               ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; IOV_HIGH_P                                                              ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- IOV_HIGH_P                                                       ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- IOV_HIGH_P~input                                                 ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; IOV_LOW_P                                                               ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- IOV_LOW_P                                                        ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- IOV_LOW_P~input                                                  ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; KEY_CTRL                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- KEY_CTRL                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- KEY_CTRL~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; KEY_DET                                                                 ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- KEY_DET                                                          ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- KEY_DET~input                                                    ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; KEY_DET_ARM                                                             ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- KEY_DET_ARM                                                      ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- KEY_DET_ARM~output                                               ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; LCDBL_EN                                                                ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- LCDBL_EN                                                         ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- LCDBL_EN~output                                                  ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; LD                                                                      ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- LD                                                               ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- LD~output                                                        ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; MRS                                                                     ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- MRS                                                              ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- MRS~output                                                       ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; OE                                                                      ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- OE                                                               ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- OE~output                                                        ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; PROBE_MODE                                                              ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- PROBE_MODE                                                       ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- PROBE_MODE~output                                                ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; PWDN_MOSFET                                                             ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- PWDN_MOSFET                                                      ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- PWDN_MOSFET~output                                               ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; RESET_ASW                                                               ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- RESET_ASW                                                        ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- RESET_ASW~output                                                 ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; RESET_IN                                                                ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- RESET_IN                                                         ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- RESET_IN~input                                                   ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; SCL_ASW                                                                 ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- SCL_ASW                                                          ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- SCL_ASW~output                                                   ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; SDA_ASW                                                                 ; Top       ; Bidir Port    ; n/a      ;                                            ;
+;     -- SDA_ASW                                                          ; Top       ; Bidir Pad     ; Unplaced ; Synthesized                                ;
+;     -- SDA_ASW~output                                                   ; Top       ; Output Buffer ; Unplaced ; Preserved from Synthesis Netlist (WYSIWYG) ;
+;                                                                         ;           ;               ;          ;                                            ;
+; altera_reserved_tck                                                     ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- altera_reserved_tck                                              ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- altera_reserved_tck~input                                        ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; altera_reserved_tdi                                                     ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- altera_reserved_tdi                                              ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- altera_reserved_tdi~input                                        ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; altera_reserved_tdo                                                     ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- altera_reserved_tdo                                              ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- altera_reserved_tdo~output                                       ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; altera_reserved_tms                                                     ; Top       ; Input Port    ; n/a      ;                                            ;
+;     -- altera_reserved_tms                                              ; Top       ; Input Pad     ; Unplaced ; Synthesized                                ;
+;     -- altera_reserved_tms~input                                        ; Top       ; Input Buffer  ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_FIFO_ctrl_AD_sample_en              ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_FIFO_ctrl_ARM_data_ready            ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_FIFO_ctrl_ARM_read_over             ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_FIFO_ctrl_FIFO_WEN                  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_burst_period_0_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_burst_period_1_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_burst_period_2_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_0_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_10_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_11_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_12_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_13_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_14_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_15_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_16_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_17_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_18_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_19_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_1_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_20_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_21_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_22_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_23_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_24_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_25_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_26_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_27_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_28_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_29_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_2_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_30_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_31_ ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_3_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_4_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_5_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_6_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_7_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_8_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_couunter_9_  ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_0_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_10_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_11_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_12_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_13_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_14_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_15_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_16_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_17_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_18_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_19_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_1_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_20_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_21_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_22_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_23_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_24_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_25_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_26_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_27_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_28_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_29_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_2_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_30_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_31_      ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_3_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_4_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_5_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_6_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_7_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_8_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; pre_syn.bp.Electromagnetic_Acoustic_burst_syn_ctrl_clk_div_num_9_       ; Top       ; Output Port   ; n/a      ;                                            ;
+;                                                                         ;           ;               ;          ;                                            ;
+; receive_amp_en                                                          ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- receive_amp_en                                                   ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- receive_amp_en~output                                            ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
+; receive_gain_ctrl                                                       ; Top       ; Output Port   ; n/a      ;                                            ;
+;     -- receive_gain_ctrl                                                ; Top       ; Output Pad    ; Unplaced ; Synthesized                                ;
+;     -- receive_gain_ctrl~output                                         ; Top       ; Output Buffer ; Unplaced ; Synthesized                                ;
+;                                                                         ;           ;               ;          ;                                            ;
++-------------------------------------------------------------------------+-----------+---------------+----------+--------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Partition Merge Resource Usage Summary                                 ;
++---------------------------------------------+--------------------------+
+; Resource                                    ; Usage                    ;
++---------------------------------------------+--------------------------+
+; Estimated Total logic elements              ; 2,777                    ;
+;                                             ;                          ;
+; Total combinational functions               ; 1659                     ;
+; Logic element usage by number of LUT inputs ;                          ;
+;     -- 4 input functions                    ; 589                      ;
+;     -- 3 input functions                    ; 380                      ;
+;     -- <=2 input functions                  ; 690                      ;
+;                                             ;                          ;
+; Logic elements by mode                      ;                          ;
+;     -- normal mode                          ; 1136                     ;
+;     -- arithmetic mode                      ; 523                      ;
+;                                             ;                          ;
+; Total registers                             ; 1970                     ;
+;     -- Dedicated logic registers            ; 1970                     ;
+;     -- I/O registers                        ; 0                        ;
+;                                             ;                          ;
+; I/O pins                                    ; 106                      ;
+; Total memory bits                           ; 290862                   ;
+; Embedded Multiplier 9-bit elements          ; 0                        ;
+; Total PLLs                                  ; 1                        ;
+;     -- PLLs                                 ; 1                        ;
+;                                             ;                          ;
+; Maximum fan-out node                        ; altera_internal_jtag~TDO ;
+; Maximum fan-out                             ; 812                      ;
+; Total fan-out                               ; 13348                    ;
+; Average fan-out                             ; 3.39                     ;
++---------------------------------------------+--------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge RAM Summary                                                                                                                                                                                                                                                                                 ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; Name                                                                                                                                                                                                  ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; Electromagnetic_Acoustic:Electromagnetic_Acoustic|protect:protect|altshift_taps:triggerP_d_tmp_rtl_0|shift_taps_4jm:auto_generated|altsyncram_n0b1:altsyncram2|ALTSYNCRAM                             ; AUTO ; Simple Dual Port ; 23           ; 2            ; 23           ; 2            ; 46     ; None ;
+; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_i024:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4096         ; 71           ; 4096         ; 71           ; 290816 ; None ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+
+
++--------------------------+
+; Partition Merge Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Partition Merge
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+    Info: Processing started: Sun Jan 15 17:39:20 2017
+Info: Command: quartus_cdb --read_settings_files=off --write_settings_files=off FlawDetector -c TOP --merge=on
+Warning (35010): Previously generated Fitter netlist for partition "Top" is older than current Synthesis netlist -- using the current Synthesis netlist instead to ensure that the latest source changes are included
+    Info (35011): Set the option to Ignore source file changes to force the Quartus II software to always use a previously generated Fitter netlist
+Info (35007): Using synthesis netlist for partition "Top"
+Info (35007): Using synthesis netlist for partition "sld_hub:auto_hub"
+Info (35007): Using synthesis netlist for partition "sld_signaltap:auto_signaltap_0"
+Info (35024): Succesfully connected in-system debug instance "auto_signaltap_0" to all 144 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
+Info (35002): Resolved and merged 3 partition(s)
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 14 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ARM_ADDR[0]"
+    Warning (15610): No output dependent on input pin "ARM_ADDR[1]"
+    Warning (15610): No output dependent on input pin "AD_DCO"
+    Warning (15610): No output dependent on input pin "AD_OR"
+    Warning (15610): No output dependent on input pin "FIFO_EF"
+    Warning (15610): No output dependent on input pin "FIFO_FF"
+    Warning (15610): No output dependent on input pin "FIFO_HF"
+    Warning (15610): No output dependent on input pin "FIFO_PAE"
+    Warning (15610): No output dependent on input pin "FIFO_PAF"
+    Warning (15610): No output dependent on input pin "CODER_A"
+    Warning (15610): No output dependent on input pin "CODER_B"
+    Warning (15610): No output dependent on input pin "FAULT_L"
+    Warning (15610): No output dependent on input pin "FAULT_H"
+    Warning (15610): No output dependent on input pin "DONE_L"
+Info (21057): Implemented 2986 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 51 input pins
+    Info (21059): Implemented 41 output pins
+    Info (21060): Implemented 18 bidirectional pins
+    Info (21061): Implemented 2801 logic cells
+    Info (21064): Implemented 73 RAM segments
+    Info (21065): Implemented 1 PLLs
+Info: Quartus II 64-Bit Partition Merge was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 521 megabytes
+    Info: Processing ended: Sun Jan 15 17:39:22 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+

@@ -1,0 +1,54 @@
+module discharge(
+	input		wire			clk,				// 100MHz
+	input 	wire			reset_n,			//复位信号，低有效
+)
+
+parameter	WAIT			= 1'b0,
+				DISCHARGE	= 1'b1;
+				
+reg discharge_ctrl;
+reg state;
+always@(posedge clk or negedge reset_n)
+begin
+	if(~reset_n)
+	begin
+		discharge_ctrl <= 1'b0;
+		state <= WAIT;
+	end
+	else
+	begin
+		case(state)
+			WAIT:
+			begin
+				if(start)
+				begin
+					discharge_ctrl <= 1'b1;
+					state <= DISCHARGE;
+				end
+				else
+				begin
+					discharge_ctrl <= 1'b0;
+					state <= WAIT;
+				end
+			end
+			DISCHARGE:
+			begin
+				if(finish)
+				begin
+					discharge_ctrl <= 1'b0;
+					state <= WAIT;
+				end
+				else
+				begin
+					discharge_ctrl <= 1'b1;
+					state <= DISCHARGE;
+				end
+			end
+			default:
+			begin
+				discharge_ctrl <= 1'b0;
+				state <= WAIT;
+			end
+		endcase
+	end
+end

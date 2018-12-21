@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at TOP.v(103): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at burst_syn_ctrl.v(43): always construct contains both blocking and non-blocking assignments

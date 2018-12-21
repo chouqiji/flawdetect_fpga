@@ -1,0 +1,58 @@
+	
+`timescale 1ns/1ps	
+	
+module ADG715(
+	input		wire			clk,			// 100MHz
+	input 	wire			reset_n,		//复位信号，低有效
+	input 	wire			startflag,
+	input 	wire[1:0]	ASW_Addr,
+	input		wire[2:0]	ASW_Channel,
+	inout		wire			SDA_ASW,			// data 
+	output	wire			SCL_ASW,			// clk 400KHz Max
+	output	reg			RESET_ASW,
+	output	wire			Stopflag
+		  );
+
+reg[7:0] I2CAddr;
+reg[7:0]	I2CData;
+		  
+	always@(posedge clk)
+	begin
+		if(!reset_n)
+		begin
+			I2CData <= 8'b00000000;
+			I2CAddr <= 8'b00000000;
+			RESET_ASW <= 1'b0;
+		end
+		else
+		begin
+			RESET_ASW <= 1'b1;
+			I2CAddr <= {5'b10010,ASW_Addr,1'b0}; 
+			case(ASW_Channel)
+				3'd0:		I2CData <= 8'b00000001;
+				3'd1:	 	I2CData <= 8'b00000010;
+				3'd2:	 	I2CData <= 8'b00000100;	
+				3'd3:		I2CData <= 8'b00001000;	
+				3'd4:	 	I2CData <= 8'b00010000;	
+				3'd5:	 	I2CData <= 8'b00100000;	
+				3'd6:	 	I2CData <= 8'b01000000;	
+				3'd7:	 	I2CData <= 8'b10000000;	
+				default:	I2CData <= 8'b00000000;
+			endcase
+		end
+	end
+	
+	I2CCOM I2CCOM(.clk(clk),
+					.reset_n(reset_n),
+					.startflag(startflag),
+					.I2CAddr(I2CAddr),
+					.I2CData(I2CData),
+					.SDA(SDA_ASW),
+					.SCL(SCL_ASW),
+					.Stopflag(Stopflag)
+					);
+		
+	
+	
+		
+endmodule

@@ -1,0 +1,448 @@
+///////////////////////////////////////////////////////////////////////////////////
+//ģ�����ƣ�	Electromagnetic_Acoustic
+//�ļ����ƣ�	Electromagnetic_Acoustic.v
+//��дʱ�䣺	2012-4-25 10:54:07
+//����    ��	ld
+//����������	
+//	���ų����߼�
+//`define debug
+
+`timescale 1ns/100ps
+module Electromagnetic_Acoustic(
+//------------Global Signals------------------
+	input		wire			clk_sys,
+	input		wire			clk_sample,
+	input		wire			clk_coder,
+	input		wire			clk_sample_delay,	
+	input		wire			RESET_N,
+//	output	wire 			SYS_RST,
+	//	output	wire 			alarm_buzzer,		//alarm
+//-------------ARM interface------------------
+	input		wire[7:0]	ARM_A,
+	inout		wire[15:0]	ARM_D,
+	input		wire			iARM_CE_N, 
+	input		wire			iARM_OE_N,				//nOE (Output Enable) indicates that the current bus cycle is a read cycle.
+	input		wire			iARM_WE_N,				//nWE (Write Enable) indicates that the current bus cycle is a write cycle.
+	input		wire			iARM_DAC_ALARM,	
+	input		wire			iARM_VAL_ALARM,		
+//------------DA0 interface-------------------	
+	output	wire			oDA_SCLK,	
+	output	wire			oDA_DOUT,	
+	output	wire			oDA_SYNC_n,  
+	output	wire			oDA_LDAC_n,  
+//------------AD9246 interface----------------
+	output	wire			oAD_CLK,		//max = 40Mhz
+	input		wire			iAD_DCO,
+	output	wire			oAD_OE_N,
+	output	wire			oAD_PDWN,
+	output 	wire			oAD_DFS,
+//------------FIFO interface------------------
+	input		wire[13:0]	FIFO_DATA,		//��������
+	input		wire			AD_or,		//out of range 
+	input		wire			FIFO_EF,			
+	input		wire			FIFO_FF,			
+	input		wire			FIFO_HF, 
+	input		wire			FIFO_PAE,		
+	input		wire			FIFO_PAF,		
+	output	wire			FIFO_WCLK,	
+	output	wire			FIFO_RCLK,		
+	output	wire			FIFO_WEN,	
+	output	wire			FIFO_REN,		
+	output	wire			MRS,		
+	output	wire			OE,
+//-----------Coder interface------------------
+	input		wire			CoderInputA,
+	input		wire			CoderInputB,		
+//-----------T/R interface-----------------
+	input		wire[1:0]	protect_in,		//protect
+	output	wire			CH0_H,
+	output	wire			CH0_L,
+	output	wire			CH1_H,
+	output	wire			CH1_L,
+	output	wire			CH0_EN,
+	output	wire			CH1_EN,
+	output   wire        receive_amp_en,
+	inout		wire			SDA_ASW,			
+	output	wire			SCL_ASW,	
+	output	wire			RESET_ASW,	
+	output	wire 			Probe_mode,
+	inout		wire			HV_SDA,			
+	output	wire			HV_SCL,
+	output	wire			CHARGH_H,
+	output	wire			CHARGH_L,
+//-----------POWER interface-----------------
+	input		wire 			pow_key_det,		//System Power Key Detect
+	output	wire 			powen_sys,			//System POWER ON/OFF Control 1 --> ON; 0 --> OFF
+	output	wire 			powen_mosfet,		//FPGA POWER(3.3V/2.5V/1.2V) control 1-->ON; 0-->OFF
+	output	wire 			powen_HV,			//LCD/AD/T/R POWER(VLED/3V/+-5V/15V) Control: 1-->ON; 0-->OFF
+	output	wire			pow_key_det_arm
+//-----------test-----------------
+	//	output	wire 			AD_sample_en
+	//	input		wire[ 1:0]	test1,			//unused
+	//	output	wire[15:0]	test2				//unused
+);
+
+
+assign CHARGH_H = iARM_WE_N;
+assign CHARGH_L = iARM_CE_N;
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX										
+//---------------ARM �ӿ��߼�----------------------
+//ARM����Ҫ����
+//1.�ṩ����ģ���Ĳ��������ܲ������ź����ڵ�
+//2.�ṩϵͳ�Ĺؼ������źţ���ʹ�ܣ���ʼ���ź�
+//3.�����������ݶ�ص�ARM
+//ʱ���ο� Figure 5-12. S3C2440A nGCS Timing Diagram				
+	
+	//ARM �ӿ��߼�--------------------------------
+	wire			ARM_read;//ARM������,����Ч
+	wire			ARM_read_fifo_clk;
+	wire[9:0]	ARM_read_fifo_data;
+	reg [15:0]	ARM_read_data;
+
+	assign	ARM_read	= ~iARM_CE_N & ~iARM_OE_N;
+	assign	ARM_D		=	ARM_read	 ?  ARM_read_data : 16'hzzzz;	
+	
+	//assign ARM_read_fifo_clk = ARM_read&&(ARM_A[7:2] == 6'h20);//posedge ARM_read
+	
+	//����ͬ���߼����ȡ����--
+	reg ARM_read_buf = 0;
+	reg ARM_read_buf2 = 0;
+	wire  ARM_read_fifo_rdreq;
+	
+	always@(posedge clk_sys)
+	begin
+		if(!RESET_N)
+		begin
+			ARM_read_buf <= 0;
+			ARM_read_buf2 <= 0;
+		end
+		else
+		begin
+			ARM_read_buf <= ARM_read;
+			ARM_read_buf2 <= ARM_read_buf;
+		end
+	end
+	//assign ARM_read_fifo_rdreq =(!ARM_read_buf2&ARM_read_buf)&&(ARM_A[7:2] == 6'h20);//posedge ARM_read
+	
+	assign ARM_read_fifo_rdreq =(!ARM_read_buf2)&ARM_read_buf&ARM_A[7]&(!ARM_A[6])&(!ARM_A[5])&(!ARM_A[4])&(!ARM_A[3])&(!ARM_A[2]);//posedge ARM_readassign test2 = ARM_read_fifo_rdreq;
+	
+	
+	//��ʱ������������ѡ��
+	//ARM_read_fifo_data						//��ַ80H���������ݣ�����Ϊ4096�İ�������
+	wire ARM_data_ready; 					//��ַ84H��ARM ����׼���ã��ɶ��־
+	//wire [9:0]ARM_MAX_data;				//��ַ88H��������������ֵ��ARM��FIFO����֮ǰ��ȡ
+	wire signed[31:0]	CoderPosition;		//��ַ88H(��λ)��8CH(��λ)��������������ֵ��ARM��FIFO����֮ǰ��ȡ
+	always @ ( * )
+	begin
+		case ( ARM_A[7:2] )
+			6'h20:ARM_read_data = {6'd0,ARM_read_fifo_data};
+			6'h21:ARM_read_data = {15'h0,ARM_data_ready};
+			6'h22:ARM_read_data = CoderPosition[15:0];
+			6'h23:ARM_read_data = CoderPosition[31:16];
+//			6'h22:ARM_read_data = 0;
+//			6'h23:ARM_read_data = 0;
+			default: ARM_read_data = 0;
+		endcase
+	end
+
+	//ARMд�ź�-----------------------------------------------------
+	//��������
+	//���ڲ����������䣬�ʿ�����ʱ���ÿ��ǿ�ʱ���������⡣
+
+	reg[2:0]		burst_period;			//��ַ00H�����崮���ڣ�0=>0hz 1=>25hz 2=>50hz 3=>100hz 4=>200hz 5=>400hz 6=>800hz 7=>���Է��� 10kHz����
+	reg[19:0]	AD_sample_length;	//��ַ04H~8H������������������ʱû��ʹ��
+	reg[9:0]		pulse_period;			//��ַ0CH���������ȡ���λ����ʱ�����ڣ�//���崮Ƶ�ʷ�Χ	0.2 ~ 10 MHz
+	reg[5:0]		pulse_num;				//��ַ10H����������	5~50��	
+	reg[11:0]	gain_codeA;			//��ַ14H��Aͨ��������
+	reg[11:0]	gain_codeB;			//��ַ18H��Bͨ��������	
+	reg[6:0]		AD_clk_div_num;		//��ַ1CH��ADʱ�ӷ�Ƶ��//1-4	
+	reg 	   	PositionClear_n;		//��ַ20H��ƽ������:1-50//��ARM����//1:����ƽ��	
+//	reg[11:0]	alarm_time_begin;	//��ַ24H������ʱ������
+//	reg[11:0]	alarm_time_end;		//��ַ28H������ʱ���յ�
+//	reg[15:0]	alarm_AM;				//��ַ2CH������������ֵ
+	reg			ARM_read_over; 		//��ַ30H��ARM ������־
+	reg 			ARM_powdn_cmd;		//��ַ34H��ARM�ػ����ARM��������������FPGA��ʱһ��ʱ�����ػ�	
+//	reg			alarm_en;				//��ַ38H���������ʹ�ܣ�1Ϊʹ�ܣ�0Ϊ�ر�
+	reg 			probe_mode_r;			//��ַ3CH��̽ͷģʽ��0-->��̽ͷģʽ��1-->˫̽ͷģʽ
+
+	always@(negedge iARM_WE_N)
+	begin
+		if(!iARM_CE_N)//ѡ��оƬ
+		begin
+			case(ARM_A[7:2])//���λ���ڱ�ʾ�ֽڵ�
+				6'h00:burst_period[2:0]        	<= ARM_D[ 2:0];
+				6'h01:AD_sample_length[19:16]  	<= ARM_D[ 3:0];
+				6'h02:AD_sample_length[15:0 ]  	<= ARM_D[15:0];
+				6'h03:pulse_period[9:0]        	<= ARM_D[ 9:0];
+				6'h04:pulse_num[5:0]           	<= ARM_D[ 5:0];
+				6'h05:gain_codeA[11:0]         	<= ARM_D[11:0];
+				6'h06:gain_codeB[11:0]         	<= ARM_D[11:0];
+				6'h07:AD_clk_div_num[6:0]      	<= ARM_D[ 6:0];
+				6'h08:PositionClear_n           	<= ARM_D[   0];
+//				6'h09:alarm_time_begin[11:0]   	<= ARM_D[11:0];
+//				6'h0A:alarm_time_end[11:0]     	<= ARM_D[11:0];
+//				6'h0B:alarm_AM[15:0]           	<= ARM_D[15:0];
+				6'h0C:ARM_read_over            	<= ARM_D[	0];
+				6'h0D:ARM_powdn_cmd            	<= ARM_D[	0];
+//				6'h0E:alarm_en            	   	<= ARM_D[	0];
+				6'h0F:probe_mode_r            	<= ARM_D[	0];
+				default:;
+			endcase
+		end
+	end
+
+//	assign Probe_mode = probe_mode_r;
+	assign Probe_mode = 1'b0;
+	
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX		
+//---------------�ػ������߼�----------------------
+	
+	reg [31:0] 	pow_key_det_cnt = 0;
+	reg [31:0] 	powdn_delay_cnt = 0;
+	reg 			FPGA_powdn_cmd = 0;
+	reg 			Sys_powdn_r = 0;
+	reg [16:0]  div_cnt = 0;
+	reg 			powdn_cnt_puls = 0;
+	
+	always @(posedge clk_sys)
+	begin
+		if(!RESET_N)
+		begin
+			div_cnt <= 0;
+			powdn_cnt_puls <= 0;
+		end
+		else if(div_cnt<80_000)
+		begin
+			div_cnt <=  div_cnt +1'b1;
+			powdn_cnt_puls <= 0;
+		end
+		else 
+		begin
+			div_cnt <= 0;
+			powdn_cnt_puls <= 1;
+		end		
+	end
+	
+	
+	reg pow_key_det_buf1 = 0;
+	reg pow_key_det_buf2 = 0;		
+	always @(posedge clk_sys)
+	begin
+		if(!RESET_N)
+		begin
+			pow_key_det_cnt <= 0;
+			FPGA_powdn_cmd <= 0;
+			Sys_powdn_r <= 1;
+		end
+		else if(powdn_cnt_puls)
+		begin
+			pow_key_det_buf1 <= pow_key_det;
+			pow_key_det_buf2 <= pow_key_det_buf1;
+			if({pow_key_det_buf2,pow_key_det_buf1} == 2'b00)
+			begin 
+				pow_key_det_cnt <=  pow_key_det_cnt + 32'b1;
+				if ( pow_key_det_cnt > 5_000 ) //timeout shutdown (ms)
+					FPGA_powdn_cmd <= 1;
+			end
+			else 
+				pow_key_det_cnt <= 0;
+				
+			if(ARM_powdn_cmd || FPGA_powdn_cmd)//������һ���йػ�����͹ػ�
+				powdn_delay_cnt <= powdn_delay_cnt + 1'b1;
+			else 
+				powdn_delay_cnt <= powdn_delay_cnt;
+			if(powdn_delay_cnt > 1_000 )	//delay 1s shutdown (ms)
+				Sys_powdn_r <= 0;
+			else
+				Sys_powdn_r <= 1;
+		end
+	end
+	
+	assign powen_sys = Sys_powdn_r;  
+	assign pow_key_det_arm = pow_key_det;
+//	assign powen_sys = 1'b1; 	//test
+	
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//-------------------------���������߼�-------------------------
+
+
+	
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//--------------------------������ģ��-------------------------	
+//wire [31:0]	CoderPosition;
+Coder Coder_u(
+	.clk				(clk_coder			),
+	.reset_n			(RESET_N				),
+	.CountClear_n	(PositionClear_n	),
+	.SignalA			(CoderInputA		),
+	.SignalB			(CoderInputB		),
+	.dout				(CoderPosition		)
+);
+
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX		
+//---------------同步信号-------------------------
+//Ҫ�������崮�������ڣ�25,50,100,200,400,800Hz
+//ģ����������������
+//ģ������ͬ���źţ������壬����һ��ʱ�ӣ�
+	wire burst_syn;	//����ͬ���źţ��������źţ�����һ��ʱ�ӣ��������ǳ���Ϊ0
+	
+	burst_syn_ctrl burst_syn_ctrl(
+		.clk_sample	 	(clk_sample			),
+		.reset_n		 	(RESET_N				),
+//		.burst_period	(burst_period		),
+		.burst_syn		(burst_syn			)
+		);
+	
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	
+//-------------------------脉冲发射模块-----------------------
+//pulse_num：脉冲数量
+//pulse_period：脉冲周期    
+//dead_num：死区时间   
+//f=100M/(pulse_period+dead_num)/2;
+
+	wire protect_en;
+	pulse_gen	pulse_gen(	
+		.clk				(clk_sample		),
+		.reset_n			(RESET_N			),
+//		.pulse_period	(pulse_period	),
+//		.pulse_num		(pulse_num		),
+//		.dead_num		(dead_num		),
+		.burst_syn		(burst_syn		),
+//		.protect_en		(protect_en		),
+		.CH0_H			(CH0_H			),
+		.CH0_L			(CH0_L			),
+		.CH1_H			(CH1_H			),
+		.CH1_L			(CH1_L			),
+		.CH0_EN			(CH0_EN			),
+		.CH1_EN			(CH1_EN)
+		);
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	
+//-------------------------过流保护-----------------------
+//protect_en：1-peotect,2-unpeotect;
+    
+	protect	protect(	
+		.clk			(clk_sample	),
+		.reset_n		(RESET_N		),
+		.protect_in	(protect_in	),
+		.protect_en	(protect_en	)
+		);
+		
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	
+//-------------------------滤波器网络-----------------------	
+
+reg  	I2C_startflag;
+		
+Filter Filter(.clk(clk_sample),			
+				.reset_n(RESET_N),		
+//				.pulse_period(pulse_period), 
+				.SDA_ASW(SDA_ASW),			 
+				.SCL_ASW(SCL_ASW),
+				.RESET_ASW(RESET_ASW)			
+				);
+	
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX			
+//-------------------------��������-----------------------------	
+//AD5322
+//�������ڲ���ʽ	�ֶ�����
+//��������ֻ���ֶ�����
+//���������룬��ģ�齫��ֱ���͸�DAC		
+	wire AD5322_en;
+	AD5322 AD5322(
+		.clk				(clk_sys   		),//less than 150MHz
+		.rst_n			(RESET_N			),
+		.en				(AD5322_en		),
+		.ChannelA_data	(gain_codeA		),
+		.ChannelB_data	(gain_codeB		),
+		.sclk				(oDA_SCLK		),
+		.dout				(oDA_DOUT		),
+		.sync_n			(oDA_SYNC_n		),
+		.ldac_n			(oDA_LDAC_n		)	
+		);	
+					
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//--------------------------AD��������ģ��-------------------------
+//��Ҫ����AD�Ĳ���Ƶ��
+
+
+//wire Avg_Sram_full;
+wire AD_clk;
+wire AD_sample_en;
+wire AD_data_valid;
+//assign oAD_CLK= AD_clk & AD_sample_en;
+//assign oAD0_CLK= clk_sample & AD_sample_en;
+assign oAD_CLK= AD_clk;
+
+AD_clk_gen AD_clk_gen(
+		.reset_n				(RESET_N),
+		.clk					(clk_sample		),
+		.clk_sample_delay	(clk_sample_delay),
+		.burst_syn			(burst_syn		),
+//		.AD_clk_div_num	(AD_clk_div_num),
+//		.AD_sample_length	(AD_sample_length),
+		.AD_sample_en		(AD_sample_en	),
+		.AD_data_valid		(AD_data_valid	),
+		.AD_clk				(AD_clk),
+		.AD_PDWN				(oAD_PDWN),			
+		.AD_OE_N				(oAD_OE_N),
+		.AD_DFS				(oAD_DFS),		
+		.AD_DCO				(iAD_DCO)
+		);	
+		
+					
+FIFO_ctrl FIFO_ctrl(
+		.clk						(clk_sample),
+		.reset_n					(RESET_N),
+		.AD_clk					(AD_clk),
+		.AD_sample_en			(AD_sample_en),
+		.FIFO_EF					(FIFO_EF),
+		.FIFO_FF					(FIFO_FF),
+		.FIFO_HF					(FIFO_HF),
+		.FIFO_PAE				(FIFO_PAE),
+		.FIFO_PAF				(FIFO_PAF),
+		.FIFO_WCLK				(FIFO_WCLK),
+		.FIFO_RCLK				(FIFO_RCLK),
+		.FIFO_WEN				(FIFO_WEN),
+		.FIFO_REN				(FIFO_REN),
+		.MRS						(MRS),
+		.OE						(OE)
+		);
+	
+						
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//-----------------------�źŴ���ģ��---------------------------
+	
+
+	signal_pro signal_pro(
+		.clk						(clk_sample					),
+		.reset_n					(RESET_N						),
+		.FIFO_DATA				(FIFO_DATA				),
+		.AD_data_valid			(AD_data_valid			),
+//		.Avg_Sram_full			(Avg_Sram_full			),
+		.ARM_read_fifo_data	(ARM_read_fifo_data 	),
+//		.ARM_MAX_data			(ARM_MAX_data			),
+		.ARM_read_fifo_clk	(clk_sys					),
+		.ARM_read_fifo_rdreq	(ARM_read_fifo_rdreq	),
+		.ARM_read_over			(ARM_read_over			),      
+		.ARM_data_ready		(ARM_data_ready		)
+		//.test						(							)     
+		);
+
+	assign AD5322_en = ~AD_sample_en; //��AD��������ʱ��һֱ���·Ŵ�������
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//��Դ���ƣ���AD�����ڼ佫��Դ�ص����ɵ��ݹ��磬����ʱ�佫��Դ�򿪸����ݳ���
+
+//	assign powen_mosfet   =  Sys_powdn_r ? ~AD_sample_en : 1'b0;    
+	assign powen_mosfet   =  1'b1;
+	assign powen_HV = ~AD_sample_en;
+	assign receive_amp_en = AD_sample_en;
+
+
+
+
+endmodule

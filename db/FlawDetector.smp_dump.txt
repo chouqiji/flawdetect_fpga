@@ -1,0 +1,66 @@
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD_clk_gen:AD_clk_gen|state
+Name state.STATE_IDLE state.STATE_QUIT state.STATE_SAMPLE 
+state.STATE_IDLE 0 0 0 
+state.STATE_SAMPLE 1 0 1 
+state.STATE_QUIT 1 1 0 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|Filter:Filter|ADG715:ADG715|I2CCOM:I2CCOM|state
+Name state.STOP state.ACK2 state.DATA state.ACK1 state.ADD1 state.START1 state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.START1 0 0 0 0 0 1 1 
+state.ADD1 0 0 0 0 1 0 1 
+state.ACK1 0 0 0 1 0 0 1 
+state.DATA 0 0 1 0 0 0 1 
+state.ACK2 0 1 0 0 0 0 1 
+state.STOP 1 0 0 0 0 0 1 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|Filter:Filter|ADG715:ADG715|I2CCOM:I2CCOM|cnt
+Name cnt.000 cnt.011 cnt.010 cnt.001 cnt.101 
+cnt.101 0 0 0 0 0 
+cnt.001 0 0 0 1 1 
+cnt.010 0 0 1 0 1 
+cnt.011 0 1 0 0 1 
+cnt.000 1 0 0 0 1 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|protect:protect|HVP_state
+Name HVP_state.STATE_IDLE HVP_state.STATE_P_WAIT HVP_state.STATE_P_TEST 
+HVP_state.STATE_IDLE 0 0 0 
+HVP_state.STATE_P_TEST 1 0 1 
+HVP_state.STATE_P_WAIT 1 1 0 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|protect:protect|MosP_state
+Name MosP_state.STATE_IDLE MosP_state.STATE_P_WAIT MosP_state.STATE_P_TEST 
+MosP_state.STATE_IDLE 0 0 0 
+MosP_state.STATE_P_TEST 1 0 1 
+MosP_state.STATE_P_WAIT 1 1 0 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD5243:AD5243|AD5243_I2C:AD5243_I2C|state
+Name state.STOP state.ACK3 state.DATA state.ACK2 state.INS state.ACK1 state.ADD1 state.START1 state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 0 
+state.START1 0 0 0 0 0 0 0 1 1 
+state.ADD1 0 0 0 0 0 0 1 0 1 
+state.ACK1 0 0 0 0 0 1 0 0 1 
+state.INS 0 0 0 0 1 0 0 0 1 
+state.ACK2 0 0 0 1 0 0 0 0 1 
+state.DATA 0 0 1 0 0 0 0 0 1 
+state.ACK3 0 1 0 0 0 0 0 0 1 
+state.STOP 1 0 0 0 0 0 0 0 1 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|AD5243:AD5243|AD5243_I2C:AD5243_I2C|cnt
+Name cnt.000 cnt.011 cnt.010 cnt.001 cnt.101 
+cnt.101 0 0 0 0 0 
+cnt.001 0 0 0 1 1 
+cnt.010 0 0 1 0 1 
+cnt.011 0 1 0 0 1 
+cnt.000 1 0 0 0 1 
+
+State Machine - |TOP|Electromagnetic_Acoustic:Electromagnetic_Acoustic|pulse_gen:pulse_gen|state_wr
+Name state_wr.STATE_P state_wr.STATE_QUIT state_wr.STATE_DEAD2 state_wr.STATE_L state_wr.STATE_DEAD1 state_wr.STATE_H state_wr.0000 
+state_wr.0000 0 0 0 0 0 0 0 
+state_wr.STATE_H 0 0 0 0 0 1 1 
+state_wr.STATE_DEAD1 0 0 0 0 1 0 1 
+state_wr.STATE_L 0 0 0 1 0 0 1 
+state_wr.STATE_DEAD2 0 0 1 0 0 0 1 
+state_wr.STATE_QUIT 0 1 0 0 0 0 1 
+state_wr.STATE_P 1 0 0 0 0 0 1 

@@ -1,0 +1,209 @@
+//���ų���ϵͳ�����ļ�
+
+module TOP (
+//SYSTEM
+	input 	wire 			FPGA_CLK_SYS, 					//Oscillator Clock 50M
+	input 	wire			RESET_IN,						//Reset input
+	
+	output	wire			LCDBL_EN,
+	
+//ARM BUS   wire
+	input 	wire			ARM_WEn,
+	input 	wire			ARM_OEn,
+	input 	wire			ARM_CE,
+	input 	wire[7:0]	ARM_ADDR,
+	inout		wire[15:0] 	ARM_DATA,
+	
+//DAC AD5322	
+	output  wire			DA_LDAC,
+	output  wire			DA_DIN,
+	output  wire			DA_SYNC,
+	output  wire			DA_SCLK,
+	
+//ADC AD9246
+	output 	wire			AD_CLK,
+	input		wire			AD_DCO,
+	output	wire			AD_OE_N,
+	output	wire			AD_PDWN,
+	output 	wire			AD_DFS,
+//FIFO
+	input 	wire[13:0]	FIFO_D,
+	input 	wire			AD_OR,
+	input		wire			FIFO_EF,			
+	input		wire			FIFO_FF,			
+	input		wire			FIFO_HF, 
+	input		wire			FIFO_PAE,		
+	input		wire			FIFO_PAF,		
+	output	wire			FIFO_WCLK,	
+	output	wire			FIFO_RCLK,		
+	output	wire			FIFO_WEN,	
+	output	wire			FIFO_REN,		
+	output	wire			MRS,		
+	output	wire			OE,
+//Coder
+	input		wire			CODER_A,
+	input		wire			CODER_B,
+	
+//EMAT Board
+	input		wire			IOV_HIGH,
+	input		wire			IOV_LOW,
+	output	wire			CH0_H,				
+	output	wire			CH0_L,
+	output	wire			CH1_H,
+	output	wire			CH1_L,
+	output	wire			CH0_EN,
+	output	wire			CH1_EN,
+	output 	wire 	      receive_amp_en,
+	inout		wire			SDA_ASW,			// data 
+	output	wire			SCL_ASW,			// clk 400KHz Max
+	output	wire			RESET_ASW,
+	output 	wire			PROBE_MODE,				//probe mode change: 1 --> Double Mode; 0 --> Sigle Mode
+	inout		wire			HV_SDA,			
+	output	wire			HV_SCL,
+	output	wire			CHARGH_H,
+	output	wire			CHARGH_L,
+	output	wire			FPGA_AGP0,
+//	inout 	wire[ 9:0]	FPGA_AGP,				//Reserved Analog Control Signal
+		
+//Power
+	input 	wire			KEY_DET,					//System Power Key Detect
+	output 	wire			KEY_CTRL,				//System POWER ON/OFF Control 1 --> ON; 0 --> OFF
+	output 	wire			PWDN,						//Mosfet Driver(20V) control 1 --> ON; 0 --> OFF
+	output	wire			POW_CTRL,				//HV Charge Control: 1 --> ON; 0 -- > OFF
+	output	wire			KEY_DET_ARM,
+	
+//Peripheral
+	input 	wire[7:0] 	FPGA_GPIO,				//FPGA GPIO, connected with ARM
+	output 	wire			FPGA_BUZZER				//BUZZER Control Signal
+//	output 	wire			SYS_RESET_n				//System Reset Signal output, for ARM and other device
+
+	);
+
+
+//	assign LCDBL_EN = POW_CTRL;
+	assign LCDBL_EN = 1'b1;
+	//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+	//---------------clk sources from PLL----------------------
+	//����ϵͳ��ʱ��
+	//Ϊ���ȶ�����,���Կ����ʵ��ĸ�λ�߼���
+	wire	clk_100_delay;
+	wire	clk_80;
+	wire	clk_100;
+	wire	clk_coder;
+	wire	clk_sys;					//�źŴ�����ϵͳʱ��
+	wire	clk_sample;				//�źŴ�����ϵͳʱ��
+	wire	clk_sample_delay;		//�źŴ�����ϵͳʱ��
+		
+	sys_pll sys_pll(
+		.inclk0(FPGA_CLK_SYS),
+		.c0    (clk_100_delay),
+		.c1    (clk_80),
+		.c2    (clk_coder),
+		.c3	(clk_100)
+		);
+//	wire			AD_CLK;
+//	wire			AD_OTR;
+//	wire			AD_sample_en;
+//	reg	[9:0]	AD_D;
+//	always @ (negedge AD_CLK or negedge AD_sample_en)
+//	begin
+//		if(~AD_sample_en)
+//			begin
+//				AD_D <= 10'd0;
+//			end
+//		else
+//			begin
+//				AD_D <= AD_D + 10'd1;
+//			end
+//	end
+		
+	assign clk_sys = clk_80;					//����ǿ�ѡ��
+	assign clk_sample = clk_100;			//����ǿ�ѡ��
+	assign clk_sample_delay = clk_100_delay;	//����ǿ�ѡ��
+	
+	assign FPGA_BUZZER = 1'b0;
+	
+	assign RESET_N = ~RESET_IN; 
+	
+	//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+	Electromagnetic_Acoustic Electromagnetic_Acoustic(
+		//------------Global Signals------------------
+		.clk_sys				(clk_sys			),
+		.clk_sample			(clk_sample		),
+		.clk_coder			(clk_coder		),
+		.clk_sample_delay	(clk_sample_delay),
+		.RESET_N				(RESET_N		),
+//		.SYS_RST				(SYS_RESET_n	),
+		//-------------ARM interface------------------			
+		.ARM_A				(ARM_ADDR		),
+		.ARM_D				(ARM_DATA		),
+		.iARM_CE_N			(ARM_CE			), 
+		.iARM_OE_N			(ARM_OEn			),//nOE (Output Enable) indicates that the current bus cycle is a read cycle.
+		.iARM_WE_N			(ARM_WEn			),//nWE (Write Enable) indicates that the current bus cycle is a write cycle.
+		.iARM_DAC_ALARM	(FPGA_GPIO[7]	),
+		.iARM_VAL_ALARM	(FPGA_GPIO[6]	),
+		//------------DA0 interface-------------------	
+		.oDA_SCLK			(DA_SCLK			),	
+		.oDA_DOUT			(DA_DIN			),	
+		.oDA_SYNC_n			(DA_SYNC			),  
+		.oDA_LDAC_n			(DA_LDAC			),  
+		//------------AD9246 interface----------------
+		.oAD_CLK			(AD_CLK			),//max = 40Mhz
+		.iAD_DCO			(AD_DCO		),
+		.oAD_OE_N			(AD_OE_N		),
+		.oAD_PDWN			(AD_PDWN		),
+		.oAD_DFS				(AD_DFS		),
+		//-----------FIFO interface-------------------
+		.FIFO_DATA			(FIFO_D				),//�������� 
+		.AD_or				(AD_OR			),//out of range
+		.FIFO_EF				(FIFO_EF),
+		.FIFO_FF				(FIFO_FF),
+		.FIFO_HF				(FIFO_HF),
+		.FIFO_PAE			(FIFO_PAE),
+		.FIFO_PAF			(FIFO_PAF),
+		.FIFO_WCLK			(FIFO_WCLK),
+		.FIFO_RCLK			(FIFO_RCLK),
+		.FIFO_WEN			(FIFO_WEN),
+		.FIFO_REN			(FIFO_REN),
+		.MRS					(MRS),
+		.OE					(OE),
+		//-----------Coder interface-----------------
+		.CoderInputA		(CODER_A			),
+		.CoderInputB		(CODER_B			),
+		//-----------T/R interface-----------------
+		.protect_in			({IOV_HIGH,IOV_LOW}),
+		.CH0_H			(CH0_H		),
+		.CH0_L			(CH0_L		),
+		.CH1_H			(CH1_H		),
+		.CH1_L			(CH1_L		),
+		.CH0_EN			(CH0_EN		),
+		.CH1_EN			(CH1_EN		),
+		.receive_amp_en  (receive_amp_en),
+		.SDA_ASW				(SDA_ASW),			 
+		.SCL_ASW				(SCL_ASW),
+		.RESET_ASW			(RESET_ASW),
+		.Probe_mode			(PROBE_MODE		),
+		.HV_SDA				(HV_SDA			),			
+		.HV_SCL				(HV_SCL			),
+		.CHARGH_H			(CHARGH_H		),
+		.CHARGH_L			(CHARGH_L		),
+		//-------------POWER interface------------------
+		.pow_key_det		(KEY_DET			),
+		.powen_sys			(KEY_CTRL		),
+		.powen_mosfet		(PWDN				),
+		.powen_HV			(POW_CTRL		),
+		.pow_key_det_arm		(KEY_DET_ARM	)
+		//------------- test ------------------
+		//.AD_sample_en		(AD_sample_en	)
+		//.test1				(					),
+		
+		);
+	
+	 
+	
+endmodule 
+//////////////////////////////////////////////////////////////////////////////////////
+//˵����
+//1.Electromagnetic_Acoustic.v����һ��debug�궨�壬����FPGA�������ʱʹ�ã�����ʹ��Ӧ��ע�͵�
+//2.signal_pro.v ����һ��simulate�궨�壬���ڷ���ʱʹ�ã�����ʹ��ʱע�͵�
+//////////////////////////////////////////////////////////////////////////////////////
